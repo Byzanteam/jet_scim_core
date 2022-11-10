@@ -17,6 +17,7 @@ defmodule JetScimCore.MixProject do
 
   defp deps do
     [
+      {:ecto, "~> 3.8"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
