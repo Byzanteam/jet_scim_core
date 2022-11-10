@@ -85,7 +85,8 @@ defmodule JetScimCore.Notification.Event do
   def changeset(schema, params) do
     schema
     |> cast(params, [
-      :public_key,
+      :schemas,
+      :publisher_uri,
       :feed_uris,
       :resource_uris,
       :type,
