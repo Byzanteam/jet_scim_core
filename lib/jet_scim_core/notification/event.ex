@@ -57,16 +57,21 @@ defmodule JetScimCore.Notification.Event do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias JetExt.Ecto.URI
+  alias JetExt.Ecto.URN
+
   @primary_key false
 
-  @event_types ~w[add create activate modify deactivate delete remove password confirmation]a
+  event_types = ~w[add create activate modify deactivate delete remove password confirmation]a
+
+  {:ok, default_event} = Ecto.Type.cast(URN, "urn:ietf:params:scim:schemas:notify:2.0:Event")
 
   embedded_schema do
-    field :schemas, {:array, :string}, default: ["urn:ietf:params:scim:schemas:notify:2.0:Event"]
-    field :publisher_uri, {:array, :string}
-    field :feed_uris, {:array, :string}
-    field :resource_uris, {:array, :string}
-    field :type, Ecto.Enum, values: @event_types
+    field :schemas, {:array, URN}, default: [default_event]
+    field :publisher_uri, {:array, URI}
+    field :feed_uris, {:array, URI}
+    field :resource_uris, {:array, URI}
+    field :type, Ecto.Enum, values: event_types
     field :attributes, {:array, :string}, default: []
     field :values, :map, default: %{}
   end
