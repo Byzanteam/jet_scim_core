@@ -18,7 +18,7 @@ defmodule JetScimCore.MixProject do
   defp deps do
     [
       {:ecto, "~> 3.8"},
-      {:jet_ext, github: "byzanteam/jet-ext"},
+      {:jet_ext, github: "Byzanteam/jet-ext"},
       {:urn, "~> 1.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
