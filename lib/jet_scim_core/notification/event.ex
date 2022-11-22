@@ -68,7 +68,7 @@ defmodule JetScimCore.Notification.Event do
 
   embedded_schema do
     field :schemas, {:array, URN}, default: [default_event]
-    field :publisher_uri, {:array, URI}
+    field :publisher_uri, URI
     field :feed_uris, {:array, URI}
     field :resource_uris, {:array, URI}
     field :type, Ecto.Enum, values: event_types
@@ -77,11 +77,11 @@ defmodule JetScimCore.Notification.Event do
   end
 
   @type t() :: %__MODULE__{
-          schemas: [String.t()],
-          publisher_uri: [String.t()],
-          feed_uris: [String.t()],
-          resource_uris: [String.t()],
-          type: atom(),
+          schemas: [URN.t()],
+          publisher_uri: URI.t(),
+          feed_uris: [URI.t()],
+          resource_uris: [URI.t()],
+          type: unquote(JetExt.Types.make_sum_type(event_types)),
           attributes: [String.t()],
           values: map()
         }
